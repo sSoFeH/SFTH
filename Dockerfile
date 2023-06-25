@@ -8,5 +8,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 ENV PATH="/home/jmbot/bin:$PATH"
 
-CMD ["python3","-m","jmbot"]
-CMD ["python","sofe.py"]
+CMD (["python3","-m","jmbot"] , ["python","sofe.py"])

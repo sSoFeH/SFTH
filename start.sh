@@ -1,2 +1,3 @@
-python3 -m jmbot
-python3 sofe.py
+python3 -m jmbot 
+python sofe.py
+

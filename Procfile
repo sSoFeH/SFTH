@@ -1,2 +1,2 @@
-worker: python3 -m jmbot
-worker: python3 sofe.py
+worker1: python3 -m jmbot 
+worker2: python sofe.py
