@@ -5,6 +5,11 @@ import webbrowser
 import requests
 import time as mm
 import telebot
+import telethon
+from fake_useragent import UserAgent
+from telethon.sync import functions
+
+from jmbot import jmbot
 from telebot import types
 
 token = '5846752965:AAHwMYEw2szkv21ziZ8CDOWVHNGNhHbsIi4'
@@ -19,12 +24,24 @@ is_running = False
 
 bot = telebot.TeleBot(token)
 
+@bot.message_handler(func=lambda message: message.text == 'صيد')
+async def hunterusername(event):
+    choice = str(event.pattern_match.group(1))
+    await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
+    try:
+        ch = await jmbot(
+            functions.channels.CreateChannelRequest(
+                title="HUNTTING BY SOFE",
+                about="This Channel To Huntting Usernames By ==> @SoFeThon -- @x_xxi ❤️‍🔥"
+            )
+        )
+
 def start_execution():
     global X
     while is_running:
         F = ''.join(random.sample(ABC, Extrra))
         G = ''.join(random.sample(klshy, Extrra))
-        Ali = (F + F + G + F + G + F)
+        SoFe = (F + F + G + F + G + F)
         extra = (F + G + F + F + G)
         Extra = (F + G + G + F + G + F )
         eXtra = (F + F + F + G + F)
@@ -33,7 +50,7 @@ def start_execution():
         LL = (F + G + G + F + F + F)
         ZZ = (F + F + F + G + G + F)
         MM = (F + G + F + G + G + G)
-        EXTRA = Ali, extra, Extra, eXtra, LL, ZZ, MM
+        EXTRA = SoFe, extra, Extra, eXtra, LL, ZZ, MM
         user = str("".join(random.choice(EXTRA)))
         url = f"https://t.me/{user}"
         req = requests.get(url)
