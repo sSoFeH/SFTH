@@ -24,17 +24,6 @@ is_running = False
 
 bot = telebot.TeleBot(token)
 
-@bot.message_handler(func=lambda message: message.text == 'صيد')
-async def hunterusername(event):
-    choice = str(event.pattern_match.group(1))
-    await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
-    try:
-        ch = await jmbot(
-            functions.channels.CreateChannelRequest(
-                title="HUNTTING BY SOFE",
-                about="This Channel To Huntting Usernames By ==> @SoFeThon -- @x_xxi ❤️‍🔥"
-            )
-        )
 
 def start_execution():
     global X
@@ -83,6 +72,18 @@ def handle_stop(message):
         bot.send_message(message.chat.id, "The code has stopped.")
     else:
         bot.send_message(message.chat.id, "The code is not running.")
+
+@bot.message_handler(func=lambda message: message.text == 'صيدد')
+async def hunterusername(event):
+    choice = str(event.pattern_match.group(1))
+    await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
+    try:
+        ch = await jmbot(
+            functions.channels.CreateChannelRequest(
+                title="HUNTTING BY SOFE",
+                about="This Channel To Huntting Usernames By ==> @SoFeThon -- @x_xxi ❤️‍🔥"
+            )
+        )
 
 @bot.message_handler(func=lambda message: message.text == 'صيد')
 def handle_hunt(message):
