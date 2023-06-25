@@ -75,7 +75,7 @@ def handle_stop(message):
 @bot.message_handler(func=lambda message: message.text == 'صيدد')
 async def hunterusername(event):
     choice = str(event.pattern_match.group(1))
-    await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
+bot.send_message(message.chat.id, "تم انشاء القناة")
     try:
         ch = await jmbot(
             functions.channels.CreateChannelRequest(
