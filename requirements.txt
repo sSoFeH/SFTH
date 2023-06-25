@@ -5,7 +5,6 @@ somnium
 telethon-session-sqlalchemy
 telebot
 requests
-sys
 random
 time
 webbrowser
