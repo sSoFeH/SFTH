@@ -8,7 +8,6 @@ import telebot
 import telethon
 from fake_useragent import UserAgent
 from telethon.sync import functions
-
 from jmbot import jmbot
 from telebot import types
 
@@ -81,14 +80,22 @@ async def hunterusername(event):
         ch = await jmbot(
             functions.channels.CreateChannelRequest(
                 title="HUNTTING BY SOFE",
-                about="This Channel To Huntting Usernames By ==> @SoFeThon -- @x_xxi ❤️‍🔥",
+                about=f"This Channel To Huntting Usernames By ==> @SoFeThon -- @x_xxi ❤️‍🔥",
+                username=username
             )
         )
-        ch = ch.updates[1].channel_id
+        return channel.updates[1].channel_id
     except Exception as e:
-        await jmbot.send_message(
-            event.chat_id, f"خطأ في انشاء القناة , الخطأ**-  : {str(e)}**"
-        )
+        print(f"Failed to create channel: {str(e)}")
+        return None
+        
+@bot.message_handler(func=lambda message: message.text == 'صيد')
+def handle_hunt(message):
+    keyboard = types.InlineKeyboardMarkup()
+    start_button = types.InlineKeyboardButton("Start HUNTTING!!", callback_data="start")
+    stop_button = types.InlineKeyboardButton("Stop HUNTTING", callback_data="stop")
+    keyboard.row(start_button, stop_button)
+    bot.send_message(message.chat.id, "❤️‍🔥 - - - - اختار وضع ابوت - - - - ❤️‍🔥", reply_markup=keyboard)
 
 @bot.callback_query_handler(func=lambda call: True)
 def handle_callback(call):
