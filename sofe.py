@@ -4,6 +4,10 @@ import time
 import webbrowser
 import requests
 import time as mm
+import telebot
+from telebot import types
+from threading import Thread
+from telethon.sync import TelegramClient
 
 token = '5846752965:AAHwMYEw2szkv21ziZ8CDOWVHNGNhHbsIi4'
 ID = '929366169'
@@ -16,7 +20,23 @@ Extrra = 1
 is_running = False
 
 bot = telebot.TeleBot(token)
+api_id = '20809128'
+api_hash = '69c8efc67e1e5b4e696b7f98ee4d7d51'
 
+# Initialize TelegramClient
+client = TelegramClient('+14809201923.session-journal', api_id, api_hash)
+client.start()
+
+# Function to change the account username
+def change_username(username):
+    try:
+        client(telethon.tl.functions.account.UpdateUsernameRequest(username))
+        client.send_message('me', f"The username has been changed to {username}.")
+    except telethon.errors.FloodWaitError as e:
+        # Handle FloodWaitError (if applicable)
+        print(f"Waiting for {e.seconds} seconds...")
+        time.sleep(e.seconds)
+        change_username(username)
 def start_execution():
     global X
     while is_running:
@@ -38,11 +58,11 @@ def start_execution():
         if req.text.find('If you have <strong>Telegram</strong>, you can contact <a class="tgme_username_link"') >= 0:
             print(f"'\033[1;32m  [   {X}   ] متـاح : {user} ")
             try:
-                req = requests.post(
-                    f'''https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text=Welcome.\n========\nحـصلتلك يـوزر راقـي ✅ \n- - - - - - - - - - - - - - - -\n@{user} \nاداة : @x_xxi ''')
+                # Change the account username
+                 change_username(user)
             except NameError:
                 pass
-        else:
+        :else
             print(f"\033[2;39m [  {X}  ] مـحجـوز >>  {user} ")
         X += 1
 
@@ -64,36 +84,6 @@ def handle_stop(message):
         bot.send_message(message.chat.id, "The code has stopped.")
     else:
         bot.send_message(message.chat.id, "The code is not running.")
-
-api_id = '20809128'
-api_hash = '69c8efc67e1e5b4e696b7f98ee4d7d51'
-bot_token = '5846752965:AAHwMYEw2szkv21ziZ8CDOWVHNGNhHbsIi4'
-bot_chat_id = '929366169'
-
-bot = telebot.TeleBot(bot_token)
-
-def create_private_channel(session_file):
-    with TelegramClient(session_file, api_id, api_hash) as client:
-        result = client(functions.channels.CreateChannelRequest(
-            title='Private Channel',
-            about='This is a private channel created by the bot.',
-            megagroup=False
-        ))
-        if result and isinstance(result.chats[0], types.Channel):
-            return result.chats[0].id
-
-@bot.message_handler(commands=['start'])
-def handle_start(message):
-    bot.send_message(message.chat.id, "The bot has started.")
-
-@bot.message_handler(commands=['قناة'])
-def handle_create_channel(message):
-    session_file = '+14809201923.session-journal'
-    channel_id = create_private_channel(session_file)
-    if channel_id:
-        bot.send_message(bot_chat_id, f"A new private channel has been created. Channel ID: {channel_id}")
-    else:
-        bot.send_message(bot_chat_id, "Failed to create the private channel.")
 
 @bot.message_handler(func=lambda message: message.text == 'صيد')
 def handle_hunt(message):
