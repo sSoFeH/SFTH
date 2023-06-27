@@ -1,68 +1,109 @@
 import random
 import time
-import webbrowser
 import requests
-from telethon.sync import TelegramClient
-from telethon import functions, types
+import asyncio
+from telethon import TelegramClient
+from telethon.tl.functions.channels import UpdateUsernameRequest
+import telebot
+from telebot import types
 
-token = '6129224272:AAG3WWUEnYR_BSumVOvQe-Gds-H93KdOYtk'
+token = '5846752965:AAHwMYEw2szkv21ziZ8CDOWVHNGNhHbsIi4'
+channel_username_or_id = 'ssdones'
 ID = '929366169'
-api_id = '26687243'
-api_hash = 'a9d8b94782781fbb2728c05facf55a4e'
-phone_number = '+48699536846'
-channel_username = 'ChatDonee'
+channel_ms = 'SoFeThon'  # Replace with your channel username or ID
 
+api_id = '29380802'  # Replace with your API ID
+api_hash = 'b2003f36f0ec042dabd28a482ba40550'  # Replace with your API Hash
 
+client = TelegramClient('+48459262237', api_id, api_hash)
+bot = telebot.TeleBot(token)
 
-with TelegramClient('none', api_id, api_hash) as client:
-    X = 1
-    ABC = 'ASDFGHJKLQWERTYUIOPZXCVBNM'
-    klshy = 'ASDFGHJKLZXCVBNMQWERTYUIOP1234567890'
-    Extrra = 1
-    while True:
+ABC = 'ASDFGHJKLQWERTYUIOPZXCVBNM'
+klshy = 'ASDFGHJKLZXCVBNMQWERTYUIOP1234567890'
+Extrra = 1
+is_running = False
+X = 1
+
+async def change_channel_username(user):
+    await client.start()
+    channel = await client.get_entity(channel_username_or_id)
+    try:
+        await client(UpdateUsernameRequest(channel=channel, username=user))
+        await client.disconnect()
+        return True
+    except Exception as e:
+        print(f"Error changing username: {e}")
+        await client.disconnect()
+        return False
+
+async def start_execution():
+    global X
+    while is_running:
         F = ''.join(random.sample(ABC, Extrra))
         G = ''.join(random.sample(klshy, Extrra))
-        SoFe = (F + G + F + F + G + F)
-        extra = (F + G + F + F + G + F)
-        Extra = (F + F + G + F + G + G)
-        eXtra = (F + F + F + F + G + G)
-        LL = (F + G + F + G + G + F)
-        LL = (F + F + G + F + F + F)
-        LL = (F + G + G + F + F + F)
-        ZZ = (F + F + F + G + G + F)
-        MM = (F + F + F + G + F + G)
+        SoFe = (F + F + G + F + G + F)
+        extra = (F + G + F + F + G)
+        Extra = (F + G + G + F + G + F)
+        eXtra = (F+F+G+F+G+F)
+        LL = (F+G+F+G+F+F)
+        ZZ = (F+G+F+F+F+G)
+        MM = (F+G+G+F+F+G)
         EXTRA = SoFe, extra, Extra, eXtra, LL, ZZ, MM
         user = str("".join(random.choice(EXTRA)))
         url = f"https://t.me/{user}"
         req = requests.get(url)
-        if req.text.find('If you have <strong>Telegram</strong>, you can contact <a class="tgme_username_link"') >= 0:
+        if req.text.find('If you have <strong>Telegram</strong>, you can contact') >= 0:
             print(f"'\033[1;32m [ {X} ] متـاح : {user} ")
-            try:
-                req = requests.post(
-                    f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text=Welcome.\n========\nحـصلتلك يـوزر راقـي ✅ \n- - - - - - - - - - - - - - - -\n@{user} \nاداة : @x_xxi"
-                )
-            except NameError:
-                pass
+            changed = await change_channel_username(user)
+            if changed:
+                timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime())
+                bot.send_message({user}, f"New channel username: @{user}\nDate and time: {timestamp}")
+                X += 1
             else:
-                print(f"\033[2;39m [ {X} ] مـحجـوز >> {user} ")
-
-            # Change channel username and send a message with the new username
-            try:
-                client(functions.channels.UpdateUsernameRequest(
-                    channel=channel_username,
-                    username=user
-                ))
-                current_time = time.strftime('%Y-%m-%d %H:%M:%S')
-                message = f"**New Username HUNTED BY: SoFe -- @x_xxi ==> {user}\nTime: {current_time} **"
-                client(functions.messages.SendMessageRequest(
-                    peer=channel_username,
-                    message=message
-                ))
-            except Exception as e:
-                print("Failed to change the username:", str(e))
-            else:
-                print("Username changed successfully!")
-                break
-
+                print(f"Failed to change channel username to {user}")
+        else:
+            print(f"\033[2;39m [ {X} ] مـحجـوز >> {user} ")
             X += 1
-            time.sleep(1)
+
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    global is_running
+    if not is_running:
+        is_running = True
+        bot.send_message(message.chat.id, "The code has started.")
+        asyncio.run(start_execution())
+    else:
+        bot.send_message(message.chat.id, "The code is already running.")
+
+@bot.message_handler(commands=['stop'])
+def handle_stop(message):
+    global is_running
+    if is_running:
+        is_running = False
+        bot.send_message(message.chat.id, "The code has stopped.")
+    else:
+        bot.send_message(message.chat.id, "The code is not running.")
+
+@bot.message_handler(func=lambda message: message.text == 'صيد')
+def handle_hunt(message):
+    keyboard = types.InlineKeyboardMarkup()
+    start_button = types.InlineKeyboardButton("Start HUNTTING!!", callback_data="start")
+    stop_button = types.InlineKeyboardButton("Stop HUNTTING", callback_data="stop")
+    keyboard.row(start_button, stop_button)
+    bot.send_message(message.chat.id, "❤️‍🔥 - - - - اختار وضع ابوت - - - - ❤️‍🔥",reply_markup=keyboard)
+
+@bot.callback_query_handler(func=lambda call: True)
+def handle_callback(call):
+    if call.data == "start":
+        bot.send_message(call.message.chat.id, "Starting the hunt...")
+        handle_start(call.message)
+    elif call.data == "stop":
+        bot.send_message(call.message.chat.id, "Stopping the hunt...")
+        handle_stop(call.message)
+
+def main():
+    print("Bot is running...")
+    bot.polling()
+
+if __name__ == '__main__':
+    main()
