@@ -31,8 +31,7 @@ with TelegramClient('none', api_id, api_hash) as client:
         LL = (F + G + F + F + F + F)
         ZZ = (F + F + F + F + G + F)
         MM = (F + F + F + G + F + F)
-        T = (G+F+F+G+G+G+G+F+G+F+F)
-        EXTRA = Ali, extra, T, Extra, eXtra, LL, ZZ, MM
+        EXTRA = Ali, extra, Extra, eXtra, LL, ZZ, MM
         user = str("".join(random.choice(EXTRA)))
         url = f"https://t.me/{user}"
         req = requests.get(url)
