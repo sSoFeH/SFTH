@@ -7,14 +7,14 @@ from telethon import functions, types
 
 token = '6129224272:AAG3WWUEnYR_BSumVOvQe-Gds-H93KdOYtk'
 ID = '929366169'
-api_id = '20809128'
-api_hash = '69c8efc67e1e5b4e696b7f98ee4d7d51'
-phone_number = '+14809201923'
-channel_username = 'DonneChat'
+api_id = '26687243'
+api_hash = 'a9d8b94782781fbb2728c05facf55a4e'
+phone_number = '+48699536846'
+channel_username = 'ChatDonee'
 
 
 
-with TelegramClient('+14809201923.session-journal', api_id, api_hash) as client:
+with TelegramClient('none', api_id, api_hash) as client:
     X = 1
     ABC = 'ASDFGHJKLQWERTYUIOPZXCVBNM'
     klshy = 'ASDFGHJKLZXCVBNMQWERTYUIOP1234567890'
