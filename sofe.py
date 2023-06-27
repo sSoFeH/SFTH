@@ -57,7 +57,7 @@ async def start_execution():
             changed = await change_channel_username(user)
             if changed:
                 timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime())
-                bot.send_message({user}, f"New channel username: @{user}\nDate and time: {timestamp}")
+                bot.send_message({user}, f"New Username HUNTTED BY SoFe @x_xxi ==> \n Username : @{user} Date and time: {timestamp}")
                 X += 1
             else:
                 print(f"Failed to change channel username to {user}")
