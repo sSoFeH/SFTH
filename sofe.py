@@ -53,8 +53,7 @@ with TelegramClient('none', api_id, api_hash) as client:
                     username=user
                 ))
                 current_time = time.strftime('%Y-%m-%d %H:%M:%S')
-                message = f"New Username HUNTED BY: SoFe -- @x_xxi
-                ( {user}\nTime: {current_time})"
+                message = f"**New Username HUNTED BY: SoFe -- @x_xxi ==> {user}\nTime: {current_time} **"
                 client(functions.messages.SendMessageRequest(
                     peer=channel_username,
                     message=message
