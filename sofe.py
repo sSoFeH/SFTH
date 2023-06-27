@@ -25,7 +25,7 @@ with TelegramClient('none', api_id, api_hash) as client:
         SoFe = (F + G + F + F + G + F)
         extra = (F + F + F + F + G + F)
         Extra = (F + F + G + F + G)
-        eXtra = (F + F + F + G + F + )
+        eXtra = (F + F + F + F + G + G)
         LL = (F + G + F + G + G + F)
         LL = (F + F + G + F + F + F)
         LL = (F + G + G + F + F + F)
