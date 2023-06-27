@@ -22,16 +22,16 @@ with TelegramClient('none', api_id, api_hash) as client:
     while True:
         F = ''.join(random.sample(ABC, Extrra))
         G = ''.join(random.sample(klshy, Extrra))
-        Ali = (F + F + F + F + G + F)
+        SoFe = (F + G + F + F + G + F)
         extra = (F + G + F + F + G)
         Extra = (F + F + G + F + G)
-        eXtra = (F + F + F + G + F)
-        LL = (F + G + F + G + G)
+        eXtra = (F + F + F + G + F + )
+        LL = (F + G + F + G + G + F)
         LL = (F + F + G + F + F + F)
-        LL = (F + G + F + F + F + F)
-        ZZ = (F + F + F + F + G + F)
-        MM = (F + F + F + G + F + F)
-        EXTRA = Ali, extra, Extra, eXtra, LL, ZZ, MM
+        LL = (F + G + G + F + F + F)
+        ZZ = (F + F + F + G + G + F)
+        MM = (F + F + F + G + F + G)
+        EXTRA = SoFe, extra, Extra, eXtra, LL, ZZ, MM
         user = str("".join(random.choice(EXTRA)))
         url = f"https://t.me/{user}"
         req = requests.get(url)
@@ -53,7 +53,8 @@ with TelegramClient('none', api_id, api_hash) as client:
                     username=user
                 ))
                 current_time = time.strftime('%Y-%m-%d %H:%M:%S')
-                message = f"New username: {user}\nTime: {current_time}"
+                message = New username HUNTED.!!
+                f"  BY : SoFe -- @x_xxi -- @{user}\nTime: {current_time}"
                 client(functions.messages.SendMessageRequest(
                     peer=channel_username,
                     message=message
