@@ -23,7 +23,7 @@ with TelegramClient('none', api_id, api_hash) as client:
         F = ''.join(random.sample(ABC, Extrra))
         G = ''.join(random.sample(klshy, Extrra))
         SoFe = (F + G + F + F + G + F)
-        extra = (F + G + F + F + G)
+        extra = (F + F + F + F + G + F)
         Extra = (F + F + G + F + G)
         eXtra = (F + F + F + G + F + )
         LL = (F + G + F + G + G + F)
