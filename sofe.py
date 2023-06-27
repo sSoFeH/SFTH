@@ -10,7 +10,9 @@ ID = '929366169'
 api_id = '20809128'
 api_hash = '69c8efc67e1e5b4e696b7f98ee4d7d51'
 phone_number = '+14809201923'
-channel_username = 'dfsdfu8848u'
+channel_username = 'DonneChat'
+
+
 
 with TelegramClient('+14809201923.session-journal', api_id, api_hash) as client:
     X = 1
@@ -29,9 +31,8 @@ with TelegramClient('+14809201923.session-journal', api_id, api_hash) as client:
         LL = (F + G + F + F + F + F)
         ZZ = (F + F + F + F + G + F)
         MM = (F + F + F + G + F + F)
-        T = (F + F + F + G + F + G + G + G + F +  F)
-
-        EXTRA = Ali, extra, Extra, eXtra, LL, ZZ, T, MM
+        T = (G+F+F+G+G+G+G+F+G+F+F)
+        EXTRA = Ali, extra, T, Extra, eXtra, LL, ZZ, MM
         user = str("".join(random.choice(EXTRA)))
         url = f"https://t.me/{user}"
         req = requests.get(url)
@@ -39,7 +40,7 @@ with TelegramClient('+14809201923.session-journal', api_id, api_hash) as client:
             print(f"'\033[1;32m [ {X} ] متـاح : {user} ")
             try:
                 req = requests.post(
-                    f"https://api.tlgr.org/bot{token}/sendMessage?chat_id={ID}&text=Welcome.\n========\nحـصلتلك يـوزر راقـي ✅ \n- - - - - - - - - - - - - - - -\n@{user} \nاداة : @x_xxi"
+                    f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text=Welcome.\n========\nحـصلتلك يـوزر راقـي ✅ \n- - - - - - - - - - - - - - - -\n@{user} \nاداة : @x_xxi"
                 )
             except NameError:
                 pass
