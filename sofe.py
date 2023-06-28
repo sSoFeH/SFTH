@@ -64,6 +64,7 @@ async def start_execution():
         else:
             print(f"\033[2;39m [ {X} ] مـحجـوز >> {user} ")
             X += 1
+            await asyncio.sleep(2)
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
