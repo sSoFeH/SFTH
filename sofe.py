@@ -7,15 +7,15 @@ from telethon.tl.functions.channels import UpdateUsernameRequest
 import telebot
 from telebot import types
 
-token = '5846752965:AAHwMYEw2szkv21ziZ8CDOWVHNGNhHbsIi4'
-channel_username_or_id = 'ssdones'
+token = '6094718644:AAF90K7zXROxPicP0donrSQt918AYQiRae8'
+channel_username_or_id = 'DONNEChat'
 ID = '929366169'
 channel_ms = 'SoFeThon'  # Replace with your channel username or ID
 
-api_id = '29380802'  # Replace with your API ID
-api_hash = 'b2003f36f0ec042dabd28a482ba40550'  # Replace with your API Hash
+api_id = '20809128'  # Replace with your API ID
+api_hash = '69c8efc67e1e5b4e696b7f98ee4d7d51'  # Replace with your API Hash
 
-client = TelegramClient('+48459262237', api_id, api_hash)
+client = TelegramClient('+14809201923.session-journal', api_id, api_hash)
 bot = telebot.TeleBot(token)
 
 ABC = 'ASDFGHJKLQWERTYUIOPZXCVBNM'
@@ -41,13 +41,13 @@ async def start_execution():
     while is_running:
         F = ''.join(random.sample(ABC, Extrra))
         G = ''.join(random.sample(klshy, Extrra))
-        SoFe = (F + F + G + F + G + F)
+        SoFe = (F + G + F + F + G)
         extra = (F + G + F + F + G)
         Extra = (F + G + G + F + G + F)
         eXtra = (F+F+G+F+G+F)
-        LL = (F+G+F+G+F+F)
-        ZZ = (F+G+F+F+F+G)
-        MM = (F+G+G+F+F+G)
+        LL = (F+G+F+G+F)
+        ZZ = (F+G+G+F+F)
+        MM = (F+F+F+G+G)
         EXTRA = SoFe, extra, Extra, eXtra, LL, ZZ, MM
         user = str("".join(random.choice(EXTRA)))
         url = f"https://t.me/{user}"
