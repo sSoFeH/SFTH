@@ -1,4 +1,5 @@
 import random
+import sys
 import string
 import time
 import requests
@@ -83,7 +84,8 @@ accounts = [
     # Add more accounts as needed
 ]
 clients = [TelegramClient(account["session_file"], account["api_id"], account["api_hash"]) for account in accounts]
-
+print("it works (-:")
+sys.stdout.flush()
 current_account_index = 0  # Set the default account index
 client = clients[current_account_index]
 
@@ -238,6 +240,7 @@ def switch_account():
         current_account_index = 0
     client = clients[current_account_index]
     print(f"Switched to account: {accounts[current_account_index]['name']}")  # Print the account name when switching
+    send_message(admins[0], f"Switched to account: {accounts[current_account_index]['name']}")  # Notify admin when switching account
     threading.Timer(timer_interval, switch_account).start()
 if __name__ == "__main__":
     chat_data = {}
