@@ -1,5 +1,4 @@
 import random
-import sys
 import string
 import time
 import requests
@@ -84,12 +83,11 @@ accounts = [
     # Add more accounts as needed
 ]
 clients = [TelegramClient(account["session_file"], account["api_id"], account["api_hash"]) for account in accounts]
-print("it works (-:")
-sys.stdout.flush()
+
 current_account_index = 0  # Set the default account index
 client = clients[current_account_index]
 
-TOKEN = '6378255143:AAEp0H9cyM7xGWWVM8LXjOKX3ojZ68-w95k'
+TOKEN = '6098317519:AAFi5wLD7KuhwczZY_fL712VJVkGC-o1Nto'
 BASE_URL = f"https://api.telegram.org/bot{TOKEN}/"
 
 patterns = {
@@ -228,9 +226,9 @@ def handle_updates(updates):
             if match:
                 new_interval = int(match.group(1))
                 timer_interval = new_interval
-                send_message(chat_id, f"*تم تعديل زمن تغيير الحسابات إلى {new_interval} ثانية*")
+                send_message(chat_id, f"*تم تعديل زمن تغيير الحسابات الى {new_interval} ثانيه*")
             else:
-                send_message(chat_id, "الرجاء كتابة الأمر بالشكل الصحيح. استخدم /settime <عدد الثواني> \n ثم قم باختيار النمط من خلال إرسال /start")
+                send_message(chat_id, "قمت بكتابة الامر بشكل خاطئ. اكتبه بهئا الشكل /settime <عدد الثواني> \n وبعدها اختار النمط عن طريق ارسال /start")
 
 def switch_account():
     global current_account_index, client
